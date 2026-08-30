@@ -17,6 +17,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FieldErrors, useForm} from "react-hook-form";
+import Link from "next/link";
 
 type formData = z.infer<typeof LoginSchema>
 
@@ -46,11 +47,16 @@ export default function LoginForm()  {
         <CardHeader>
           <CardTitle>Login To your Account</CardTitle>
           <CardDescription>
-            Enter your email | username below to login to your account
+            Enter your email | username and password below to login to your account
           </CardDescription>
           <CardAction>
             <Button className="text-lg" variant="link">
-              Sign Up
+              <Link
+                href="/signup"
+                className="text-lg font-bold  text-slate-600 hover:text-blue-600"
+              >
+                Sign up
+              </Link>
             </Button>
           </CardAction>
         </CardHeader>
@@ -81,12 +87,12 @@ export default function LoginForm()  {
                   <Label className="text-lg" htmlFor="password">
                     Password
                   </Label>
-                  <a
-                    href="#"
+                  <Link
+                    href="/sendingemail"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
                 <Input
                   {...register("password")}
