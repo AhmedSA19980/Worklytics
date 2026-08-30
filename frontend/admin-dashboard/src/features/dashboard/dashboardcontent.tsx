@@ -10,7 +10,7 @@ export const DashboardContent = ():ReactNode => {
         <h1 className="text-3xl font-bold">Welcome Back, Ahmed 👋</h1>
 
         <p className="mt-3 text-blue-100">
-          Here's what's happening with your business today.
+          Here&apos;s what&apos;s happening with your business today.
         </p>
       </section>
 
@@ -36,7 +36,7 @@ export const DashboardContent = ():ReactNode => {
 
           <div className="space-y-4">
             <p>✅ Ahmed approved Invoice #204</p>
-            <p>📦 Sarah added Product "MacBook Pro"</p>
+            <p>📦 Sarah added Product &quot;MacBook Pro &quot;</p>
             <p>💳 Payment received from John</p>
             <p>👤 New customer registered</p>
           </div>
