@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,13 +15,12 @@ import { FieldErrors, useForm } from "react-hook-form";
 import z from "zod";
 import { userSchema } from "@/schemas/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRegister } from "@/hooks/use-register";
 
-
-
-type formData = z.infer<typeof userSchema>
+type formData = z.infer<typeof userSchema>;
 
 export default function SignUpForm() {
-
   const {
     register,
     handleSubmit,
@@ -30,21 +29,39 @@ export default function SignUpForm() {
     resolver: zodResolver(userSchema),
     mode: "onSubmit",
   });
-  
-    const onSubmit = (data: formData) => {
-      console.log(data);
-    };
-    const onError = (errors: FieldErrors<formData>) => {
-      console.log(errors);
-    };
-    
+
+  const registerMutation = useRegister();
+
+  const onSubmit = async (data: formData) => {
+
+    try{
+      await registerMutation.mutateAsync(data);
+      /** you can write redirect fun to login , 
+       * and show result alert  */
+
+        console.log("User registered successfully");
+    }catch(error){
+       console.error("Registration failed", error);
+    }
+
+    //console.log(data);
+  };
+  const onError = (errors: FieldErrors<formData>) => {
+    console.log(errors);
+  };
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Register A New Account</CardTitle>
         <CardAction>
           <Button className="text-lg" variant="link">
-            Login
+            <Link
+              href="/login"
+              className="text-lg font-bold  text-slate-600 hover:text-blue-600"
+            >
+              Login
+            </Link>
           </Button>
         </CardAction>
       </CardHeader>
@@ -128,8 +145,10 @@ export default function SignUpForm() {
             </div>
           </div>
           <CardFooter className="flex-col gap-2">
-            <Button type="submit" className="w-full ">
-              Register
+            <Button type="submit" className="w-full " disabled={registerMutation.isPending}
+            >
+              {registerMutation.isPending ? "Registering..."
+                : "Register" }
             </Button>
             {/*<Button variant="outline" className="w-full">
               Login with Google
