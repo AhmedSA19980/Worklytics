@@ -26,19 +26,28 @@ namespace Admin.Data
             return enPosition;
         }
 
-        public Task<bool> DeactivatePosition(int positionId)
+        public async Task<bool> DeactivatePosition(int positionId)
         {
-            throw new NotImplementedException();
+            var position = new Position { Id = positionId };
+            _context.Positions.Attach(position);
+            _context.Entry(position).Property(p => p.IsActive).IsModified = false;
+            bool deaactivatePosition = await _context.SaveChangesAsync() > 0;
+            return deaactivatePosition;
+
         }
 
-        public Task<Position> GetByIdAsync(int Id)
+        public async Task<Position> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _context.Positions.FindAsync(Id);
         }
 
-        public Task<bool> UpdatePosition(int positionId, string name, string description)
+        public async Task<bool> UpdatePosition(int positionId, string name, string description)
         {
-            throw new NotImplementedException();
+            var position = new Position { Id = positionId, Name = name, Description = description };
+            _context.Positions.Attach(position);
+            _context.Entry(position).Property(p => p.IsActive).IsModified = false;
+            bool deaactivatePosition = await _context.SaveChangesAsync() > 0;
+            return deaactivatePosition;
         }
     }
 
