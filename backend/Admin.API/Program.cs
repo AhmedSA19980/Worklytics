@@ -40,9 +40,8 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
-var connectionString =builder.Configuration.GetConnectionString("mssql");
+var connectionString = builder.Configuration.GetConnectionString("mssql");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -161,6 +160,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Enables Swagger UI for testing and documentation.
 builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
