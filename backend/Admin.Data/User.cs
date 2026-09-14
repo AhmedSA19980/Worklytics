@@ -20,13 +20,6 @@ namespace Admin.Data
 
         public async Task<User> AddAsync(User enUser)
         {
-            var department = await _context.Departments.FindAsync(enUser.DepartmentId);
-            var position = await _context.Positions.FindAsync(enUser.PositionId);
-
-            if (department is null) throw new Exception("Department not found.");
-            if (position is null || position.DepartmentId != enUser.DepartmentId) throw new Exception(
-            "Position does not belong to the department.");
-
             await _context.Users.AddAsync(enUser);
             await _context.SaveChangesAsync();
             return enUser;
