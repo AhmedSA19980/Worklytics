@@ -15,6 +15,8 @@ namespace Admin.Data
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Position> Positions { get; set; }  
         public DbSet<AuditLogs> AuditLogs { get; set; }
 
 
@@ -31,7 +33,8 @@ namespace Admin.Data
                 entity.HasMany(u => u.RefreshToken)
                 .WithOne(rt => rt.User).HasForeignKey(rt => rt.UserId).OnDelete(DeleteBehavior.Restrict);
             
-                entity.Property(u => u.IsUserDeleted).HasDefaultValue(false);
+                entity.Property(u => u.IsActive).HasDefaultValue(true);
+                entity.Property(u => u.HireDate).HasDefaultValueSql("GETUTCDATE()");
             
             });
 
@@ -81,6 +84,20 @@ namespace Admin.Data
             {
                 entity.Property(al => al.LoggedDate).HasDefaultValueSql("GETUTCDATE()");
             });
+
+            modelBuilder.Entity<Position>(entity =>
+            {
+                entity.Property(pos => pos.IsActive).HasDefaultValue(true);
+            });
+
+            modelBuilder.Entity<Department>(entity =>
+            {
+                entity.Property(dep => dep.IsActive).HasDefaultValue(true);
+            });
+
+
+
+
 
         }
 
