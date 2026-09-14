@@ -26,7 +26,7 @@ namespace Admin.Core.models
 
 
         [Required]
-        public bool IsActive { get; set; } // set active by default,  manage from db context
+        public bool IsActive { get; set; }
 
 
     }
