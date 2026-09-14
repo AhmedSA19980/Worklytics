@@ -25,7 +25,7 @@ namespace Admin.Data
             await _context.SaveChangesAsync();
             return enPosition;
         }
-
+      
         public async Task<bool> DeactivatePosition(int positionId)
         {
             var position = new Position { Id = positionId };
