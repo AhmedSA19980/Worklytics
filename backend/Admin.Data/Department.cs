@@ -29,10 +29,10 @@ namespace Admin.Data
 
         public async Task<bool> DeactivateDepartmentAsync(int departmentId)
         {
-
+          
             var department = await _context.Departments.FindAsync(departmentId);
             if(department is null) throw new KeyNotFoundException("Department not found.");
-           
+
             if (!department.IsActive) throw new InvalidOperationException("Department is already deactivated");
 
             department.IsActive = false;
@@ -49,7 +49,7 @@ namespace Admin.Data
         {
             return await _context.Departments.AnyAsync(dep=> dep.Name == Name && dep.Id != departmentId );
         }
-      
+
         public async Task<bool> UpdateDepartmentAsync(int departmentId, string name, string description)
         {
             var affectedRows = await _context.Departments.Where(d => d.Id == departmentId)
