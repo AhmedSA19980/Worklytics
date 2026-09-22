@@ -15,6 +15,7 @@ namespace Admin.Data
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
+        public DbSet<RoleLogs> RoleLogs { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Position> Positions { get; set; }  
         public DbSet<AuditLogs> AuditLogs { get; set; }
@@ -75,6 +76,15 @@ namespace Admin.Data
 
              
                 entity.HasIndex(r => r.Name);
+
+
+
+            });
+
+            modelBuilder.Entity<RoleLogs>(entity => {
+
+
+                entity.Property(rl => rl.RoleAssignedAt).HasDefaultValueSql("GETUTCDATE()");
 
 
 

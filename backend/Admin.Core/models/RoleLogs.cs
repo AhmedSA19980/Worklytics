@@ -12,13 +12,14 @@ namespace Admin.Core.models
         [Key]
         public int Id { get; set; }
 
-        public int AdminId { get; set; }
+        public int AssignedByUserId { get; set; }
 
         public int UserId { get; set; }
 
         public int RoleId {  get; set; }
 
-        public DateTimeOffset RoleAssignedDate { get; set; }
+        public int DepartmentId { get; set; }
+        public DateTimeOffset RoleAssignedAt { get; set; }
 
         public string? Report {  get; set; }
 

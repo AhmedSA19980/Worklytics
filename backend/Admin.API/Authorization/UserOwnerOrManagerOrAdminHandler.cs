@@ -8,7 +8,7 @@ namespace Admin.API.Authorization
         protected override Task HandleRequirementAsync(
        AuthorizationHandlerContext context,
        UserOwnerOrManagerOrAdminRequirment requirement,
-       int studentId)
+       int employeeId)
         {
             // Admin override
             if (context.User.IsInRole("Admin"))
@@ -21,7 +21,7 @@ namespace Admin.API.Authorization
             var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (int.TryParse(userId, out int authenticatedStudentId) &&
-                authenticatedStudentId == studentId)
+                authenticatedStudentId == employeeId)
             {
                 context.Succeed(requirement);
             }

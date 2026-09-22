@@ -10,8 +10,18 @@ namespace Admin.Core.DTOs.users
     {
        public int Id { get; set; }
         public string First_Name { get; set; }
+        
         public string Last_Name { get; set; }
+        
         public string UserName { get; set; }
+
+        public string EmpolyeeNumber { get; set; }
+
+        public int PositionId { get; set; }
+
+        public int DepartmentId { get; set; }
+        
+        public int? ManagerId { get; set; }
 
         public string Email { get; set; }
 
