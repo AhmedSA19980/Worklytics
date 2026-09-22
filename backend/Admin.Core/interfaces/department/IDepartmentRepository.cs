@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Admin.Core.interfaces.department
 {
-    public interface  IDepartment<T> : IReadRepository<T> , IWriteRepository<T>where T : class
+    public interface  IDepartmentRepository<T> : IReadRepository<T> , IWriteRepository<T>where T : class
     {
         Task<bool> UpdateDepartmentAsync(int departmentId ,string name, string description);
-        Task<bool> DeactivateDepartmentAsync(int departmentId);  
+        Task<bool> DeactivateDepartmentAsync(int departmentId);
 
        
         Task<bool> ExistDepartmentByNameAsync(string name, int departmentId);
-        Task<bool> SetManagerToDepartment(T roleLogs);
     }
 }

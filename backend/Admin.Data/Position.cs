@@ -1,6 +1,7 @@
 ﻿using Admin.Core.interfaces.department;
 using Admin.Core.interfaces.Position;
 using Admin.Core.models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Data
 {
-    public class PositionRep : IPosition<Position>
+    public class PositionRep : IPositionRepository<Position>
     {
 
         private readonly AppDbContext _context;
@@ -28,9 +29,9 @@ namespace Admin.Data
       
         public async Task<bool> DeactivatePosition(int positionId)
         {
-            var position = new Position { Id = positionId };
+            var position = new Position { Id = positionId, IsActive= false };
             _context.Positions.Attach(position);
-            _context.Entry(position).Property(p => p.IsActive).IsModified = false;
+            _context.Entry(position).Property(p => p.IsActive).IsModified = true;
             bool deaactivatePosition = await _context.SaveChangesAsync() > 0;
             return deaactivatePosition;
 
@@ -41,13 +42,21 @@ namespace Admin.Data
             return await _context.Positions.FindAsync(Id);
         }
 
+        public async Task<bool> ExistPositionByNameAsync(int id , string name)
+        {
+            return await _context.Positions.AnyAsync(p => p.Id == id  && p.Name == name);
+        }
+
         public async Task<bool> UpdatePosition(int positionId, string name, string description)
         {
-            var position = new Position { Id = positionId, Name = name, Description = description };
-            _context.Positions.Attach(position);
-            _context.Entry(position).Property(p => p.IsActive).IsModified = false;
-            bool deaactivatePosition = await _context.SaveChangesAsync() > 0;
-            return deaactivatePosition;
+
+            var affectedRows = await _context.Positions.Where(d => d.Id == positionId)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(p => p.Name, name)
+                .SetProperty(p => p.Description, description));
+            return affectedRows > 0;
+
+
+   
         }
     }
 
