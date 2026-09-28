@@ -1,4 +1,3 @@
-"use client";
 
 import { steps } from "@/data/steps";
 
