@@ -4,7 +4,7 @@ import AISection from "@/components/layout/aisection";
 import FeaturesSection from "@/components/layout/featuresection";
 import Footer from "@/components/layout/footer";
 import { HeroSection } from "@/components/layout/herosection";
-import HowWorklyticsWorks from "@/components/layout/howWorks";
+
 import ProblemSection from "@/components/layout/problemsection";
 import SolutionSection from "@/components/layout/solutionsection";
 import UseCases from "@/components/layout/usecase";
