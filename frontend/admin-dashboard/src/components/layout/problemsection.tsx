@@ -28,7 +28,7 @@ export default function ProblemSection() {
 
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
             Managing workforce performance{" "}
-            <span className="text-slate-400">shouldn't be guesswork.</span>
+            <span className="text-slate-400">shouldn&apos;t be guesswork.</span>
           </h2>
 
           <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg">
@@ -40,7 +40,7 @@ export default function ProblemSection() {
 
         {/* Problems */}
         <ProblemsCard />
-        
+
         {/* Connection */}
         <div className="flex flex-col items-center">
           <div className="my-8 flex flex-col items-center text-slate-300">
@@ -83,9 +83,9 @@ export default function ProblemSection() {
             </h3>
 
             <p className="mt-5 max-w-xl leading-7 text-slate-600">
-              Knowing that an employee's performance score is 68% tells you
-              something changed. It doesn't necessarily tell you what changed or
-              what action should come next.
+              Knowing that an employee&apos;s performance score is 68% tells you
+              something changed. It doesn&apos;t necessarily tell you what
+              changed or what action should come next.
             </p>
           </div>
 
