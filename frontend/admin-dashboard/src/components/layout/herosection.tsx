@@ -1,63 +1,111 @@
+import Link from "next/link"
+import { PerformanceDashboard } from "./dashboardpreivew";
 
 
 export const HeroSection = () =>{
     return (
-      <div className="bg-black h-full relative isolate px-6 pt-14 lg:px-8 ">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-          ></div>
+
+       <main className="min-h-screen bg-slate-950 text-white">
+      {/* Hero */}
+      <section className="relative isolate overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-[-200px] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="absolute right-[-200px] top-[300px] h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-3xl" />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-              Announcing our next round of funding.{" "}
-              <a href="#" className="font-semibold text-indigo-400">
-                <span aria-hidden="true" className="absolute inset-0"></span>
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+
+        {/* Grid background */}
+        <div
+          className="absolute inset-0 -z-10 opacity-[0.08]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, white 1px, transparent 1px),
+              linear-gradient(to bottom, white 1px, transparent 1px)
+            `,
+            backgroundSize: "64px 64px",
+          }}
+        />
+
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 lg:px-8 lg:pb-32 lg:pt-16">
+          {/* Navigation */}
+         
+
+          {/* Hero content */}
+          <div className="mx-auto mt-24 grid max-w-6xl items-center gap-16 lg:grid-cols-2 lg:gap-20">
+            {/* Left */}
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-3 py-1.5 text-xs font-medium tracking-wide text-blue-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                WORKFORCE PERFORMANCE INTELLIGENCE
+              </div>
+
+              <h1 className="max-w-3xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+                Turn workforce data into{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                  better decisions.
+                </span>
+              </h1>
+
+              <p className="mt-7 max-w-xl text-lg leading-8 text-slate-400">
+                Worklytics helps organizations understand employee
+                performance, identify meaningful changes, and turn insights
+                into actionable improvement plans.
+              </p>
+
+              {/* CTA */}
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="#platform"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+                >
+                  Explore the platform
+
+                  <svg
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 12h14m-6-6 6 6-6 6"
+                    />
+                  </svg>
+                </Link>
+
+                <Link
+                  href="#how-it-works"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+                >
+                  See how it works
+                </Link>
+              </div>
+
+              {/* Small trust statement */}
+              <div className="mt-10 flex items-center gap-3 text-sm text-slate-500">
+                <div className="flex -space-x-2">
+                  <div className="h-7 w-7 rounded-full border-2 border-slate-950 bg-slate-700" />
+                  <div className="h-7 w-7 rounded-full border-2 border-slate-950 bg-slate-600" />
+                  <div className="h-7 w-7 rounded-full border-2 border-slate-950 bg-slate-500" />
+                </div>
+
+                <span>Built for data-driven organizations</span>
+              </div>
+            </div>
+
+            {/* Right - Dashboard visual */}
+            <div className="relative">
+              {/* Decorative glow */}
+              <div className="absolute -inset-10 -z-10 rounded-full bg-blue-500/10 blur-3xl" />
+
+              <PerformanceDashboard />
             </div>
           </div>
-          <div className="text-center">
-            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-              Data to enrich your online business
-            </h1>
-            <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-white">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
         </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath:
-                "clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-          ></div>
-        </div>
-      </div>
+      </section>
+    </main>
     );
+  
 }
